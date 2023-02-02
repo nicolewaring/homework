@@ -19,3 +19,8 @@ GAG
 AGG
 GAA
 """
+
+for i in range(1,len(dna),3):
+
+	print(dna[i-1:i+2])
+	
