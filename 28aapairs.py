@@ -202,3 +202,12 @@ V Y
 W Y
 190
 """
+
+AA = 'ACDEFGHIKLMNPQRSTVWY'
+
+
+for i in range(len(AA)):
+	for j in range(i,len(AA)):
+		if AA[i] != AA[j]:
+			print(AA[i],AA[j])
+	

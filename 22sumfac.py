@@ -13,14 +13,17 @@ python3 22sumfac.py
 """
 
 # computing running sum
-n = 3
+n = 5
 sum = 0
 for i in range(n+1):
 	sum = sum + i 
-print(sum)
+
+
+
 # factorial of n 
 
 fac = 1
 for i in range(1, n+1):
 	fac = fac * i
-print(fac)
+
+print(n, sum, fac)

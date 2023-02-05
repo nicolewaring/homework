@@ -13,3 +13,26 @@
 python3 25atseq.py
 30 0.6666666666666666 ATTACCGTAATCTACTATTAAGTCACAACC
 """
+import random 
+
+length = 30
+sumAT = 0
+seq = ''
+for i in range(length):
+	r = random.randint(1, 10) # generate a random number from 1 to 4
+	if   r < 4: 
+		seq += 'A'
+		#print('A', end='')
+		sumAT += 1 
+	elif r < 7: 
+		#print('T', end='')
+		seq += 'T'
+		sumAT += 1
+	elif r < 9: 
+		#print('C', end='')
+		seq += 'C'
+	else:        
+		#print('G', end='')
+		seq += 'G'
+
+print(length, sumAT / length, seq)
