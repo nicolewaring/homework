@@ -16,6 +16,45 @@
 
 
 """
-python3 32xcoverage.py 1000 100 100
+python3 32xcoverage.py 10 10 1
 5 20 10.82375
 """
+
+import sys
+import random
+
+size = int(sys.argv[1])
+number = int(sys.argv[2])
+length = int(sys.argv[3])
+
+Sum = 0
+
+List = [0] * size
+
+
+
+Max = 0 
+
+
+for i in range (number):
+	ind = random.randint(0,size - length)
+	for j in range (length):
+		List[ind] += 1 
+		ind = ind + 1
+	
+for i in List:
+	if i > Max:
+		Max = i 
+		
+Min = List[length]
+
+for i in List[length:size - length]:
+	if i < Min:
+		Min = i
+	
+
+for i in List:
+	Sum += i 
+	print(Sum)
+
+print(Min, Max, Sum/(size))
