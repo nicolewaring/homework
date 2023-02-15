@@ -32,7 +32,6 @@ for i in range(trials):
 	for i in range(people):
 		bday = random.randint(0,days - 1)
 		calendar[bday] += 1
-    
 
 	for i in range(len(calendar)):
 		if calendar[i] > 1:
@@ -44,11 +43,9 @@ for i in range(trials):
 	if success == True:
 		TrueSum += 1 
 
-	
 	calendar = [0] * days
-    	
-print(TrueSum/trials)
 
+print(TrueSum/trials)
 
 #birthdays a list 
 
@@ -59,7 +56,7 @@ for i in range(trials):
 	for i in range(people):
 		bday = random.randint(0, days - 1)
 		birthdays.append(bday)
-		
+
 	for j in birthdays:
 		if j not in samebd:
 			samebd.append(j)
@@ -67,13 +64,8 @@ for i in range(trials):
 			success = True
 			TrueSum += 1 
 			break 
-	
-	
+
 	birthdays = []
 	samebd = []
 
 print(TrueSum/trials)
-		
-
-		
-
