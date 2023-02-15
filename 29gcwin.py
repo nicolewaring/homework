@@ -66,7 +66,6 @@ python3 26gcwin.py
 46 CCCAGAGAGAG 0.6364
 """
 
-
 #nested 1
 
 print("nested loops:")
@@ -79,8 +78,6 @@ for i in range (len(seq)-w +1):
 			sumGC += 1
 	print(i, window, round(sumGC/w, 4))
 
-
-
 #un-nested
 
 print("unnested loops:")
@@ -89,18 +86,15 @@ window = seq[:w]
 sumGC= 0
 	
 for i in range(0, len(window)):
-    if window[i] == 'G' or window[i] == 'C':
-            sumGC += 1
+	if window[i] == 'G' or window[i] == 'C':
+		sumGC += 1
 print(0, window, round(sumGC/w, 4))
 
 for i in range (1, len(seq) -w + 1):
-    if window[0] == 'G' or window[0] == 'C':
-        sumGC = sumGC -1
-    window = window[1:]
-    window += seq[i+w-1]
-    if seq[i+w-1] == 'G' or seq[i+w-1] =='C':  
-        sumGC += 1
-    print(i, window, round(sumGC/w, 4))
-	
-	
-	
+	if window[0] == 'G' or window[0] == 'C':
+		sumGC = sumGC -1
+	window = window[1:]
+	window += seq[i+w-1]
+	if seq[i+w-1] == 'G' or seq[i+w-1] =='C':  
+		sumGC += 1
+	print(i, window, round(sumGC/w, 4))
