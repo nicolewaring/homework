@@ -56,7 +56,7 @@ sumS = 0
 sumT = 0
 sumV = 0
 sumW = 0
-sumY =0
+sumY = 0
 total = 0 
 
 with gzip.open(sys.argv[1], 'rt') as fp: 
@@ -107,7 +107,7 @@ with gzip.open(sys.argv[1], 'rt') as fp:
 				sumY += 1
 print('A', sumA, round(sumA/total, 4))
 print('C', sumC, round(sumC/total, 4))
-print('D', sumD, round(sumD/total, 4)
+print('D', sumD, round(sumD/total, 4))
 print('E', sumE, round(sumE/total, 4))
 print('F', sumF, round(sumF/total, 4))
 print('G', sumG, round(sumG/total, 4))
@@ -138,7 +138,6 @@ with gzip.open(sys.argv[1], 'rt') as fp:
 	for line in fp.readlines():
 		if line.startswith(">"):
 			continue
-		print(line)
 		for char in line:
 			total += 1 
 			for i in range(len(s)):
@@ -146,15 +145,4 @@ with gzip.open(sys.argv[1], 'rt') as fp:
 					l[i] += 1
 					continue 
 for j in range(len(l)):
-	print(s[j], l[j], round(l[j]/total, 4))
-		
-		
-		
-		
-		
-#string method - find/index methods 
-
-					
-
-
-						
+	print(s[j], l[j], round(l[j]/total, 4))					
