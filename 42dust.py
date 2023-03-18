@@ -27,3 +27,34 @@ ANNCANGGGCAGGTGGCCANCGNNNNNNNTNNNCCCGNNNNNNNNNCCAACCACCTGGTG
 GCGATNATTGNNAAAACCATTAGCGGCCAGGATGCTTTACCCAATATCAGCGATGCCGAA
 ...
 """
+
+import mcb185
+import math 
+import sys 
+
+import os
+
+window = int(sys.argv[2])
+threshold = float(sys.argv[3])
+
+def ShanEnt(seq):
+	SE_sum = 0 
+	for nt in 'ACGT':
+		SE_val = seq.count(nt)/len(seq)
+		if SE_val != 0:
+			SE_sum += (SE_val) * ((math.log((1/SE_val), 2)))
+	return SE_sum
+
+for defline, seq in mcb185.read_fasta(sys.argv[1]):
+	words=defline.split('>')
+	name=words[0]
+	lseq = list(seq)
+	for i in range(len(seq)-window + 1):
+		win = seq[i:i+window]
+		if ShanEnt(win) < threshold:
+			for j in range(i, i + window):
+				lseq[j] = 'N'
+	seq = "".join(lseq)
+	print(f">{name}")
+	for i in range(0, len(seq), 60):
+		print(seq[i:i+60])
