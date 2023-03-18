@@ -36,3 +36,73 @@ NP_414699.1 PF03458 family protein YadS [Escherichia coli str. K-12 substr. MG16
 NP_414717.2 CDP-diglyceride synthetase [Escherichia coli str. K-12 substr. MG1655]
 ...
 """
+
+import mcb185
+import gzip
+import os 
+
+home = os.getenv('HOME')
+print(home)
+
+prot = 'DATA/E.coli/GCF_000005845.2_ASM584v2_protein.faa.gz'
+
+def KD(seq):
+	sumKD = 0
+	for j in seq:
+		if j == 'I':
+			sumKD += 4.5 
+		if j == 'V':
+			sumKD += 4.2 
+		if j == 'L':
+			sumKD += 3.8
+		if j == 'F':
+			sumKD += 2.8
+		if j == 'C':
+			sumKD += 2.5 
+		if j == 'M':
+			sumKD += 1.9 
+		if j == 'A':
+			sumKD += 1.8 
+		if j == 'G':
+			sumKD -= 0.4
+		if j == 'T':
+			sumKD -= 0.7
+		if j == 'S':
+			sumKD -= 0.8
+		if j == 'W':
+			sumKD -= 0.9
+		if j == 'Y':
+			sumKD -= 1.3 
+		if j == 'P':
+			sumKD -= 1.6
+		if j == 'H':
+			sumKD -= 3.2
+		if j == 'E':
+			sumKD -= 3.5
+		if j == 'Q':
+			sumKD -= 3.5
+		if j == 'D':
+			sumKD -= 3.5
+		if j == 'N':
+			sumKD -= 3.5
+		if j == 'K':
+			sumKD -= 3.9
+		if j == 'R':
+			sumKD -= 4.5
+	return sumKD/len(seq)
+	
+def hyd(seq, w, t):
+	for i in range(len(seq) - w + 1):
+		win = seq[i: i+w]
+		if KD(win) > t and 'P' not in win:
+			return True
+	return False
+
+for defline, seq in mcb185.read_fasta(f'{home}/{prot}'):
+	words = defline.split()
+	name = words[0]
+	#split sequence into first 30AA and the rest
+	nterm = seq[0:30]
+	cterm = seq[30:]
+	if hyd(nterm, 8, 2.5) and hyd(cterm, 11, 2.0):
+		print(name, defline)
