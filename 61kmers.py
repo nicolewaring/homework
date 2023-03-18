@@ -9,6 +9,7 @@
 # Hint: use mcb185.read_fasta()
 
 
+
 """
 python3 60kmers.py ~/DATA/E.coli/GCF_000005845.2_ASM584v2_genomic.fna.gz 2
 AA 338006
@@ -28,3 +29,25 @@ TC 267395
 TG 322379
 TT 339584
 """
+import argparse
+import mcb185
+
+
+parser=argparse.ArgumentParser(description='Reports K-mer Counts for Fasta File')
+
+#positional argument 
+parser.add_argument('file', type=str, metavar='file', help='fasta file')
+parser.add_argument('k', type=int, metavar='k-mer', help='k-mer size')
+
+arg=parser.parse_args()
+
+for defline, seq in mcb185.read_fasta(arg.file):
+	kmer={}
+	for i in range(len(seq)-arg.k+1):
+		win=seq[i:i+arg.k]
+		if win not in kmer:
+			kmer[win]=1
+		else:
+			kmer[win]+=1
+	for key, val in sorted(kmer.items()):
+		print(key, val)
