@@ -29,3 +29,31 @@ CGT 1
 CTG 2
 GAC 1
 """
+
+import gzip 
+import re 
+import argparse
+
+parser = arg.parse.ArgumentParrser(description'Repeats Start Codons From E. coli Genome')
+parser.add_argument('file', type=str, metavar='<path>', help='genomic file')
+arg=parser.parse_args()
+
+#ignore pseudogenes
+with gzip.open(arg.file, 'rt') as fp:
+	for line in fp:
+		if line.startswith('ORIGIN'):
+			break
+		for line in fp:
+			f=line.split()
+			sequence += "".join(f[1:])
+
+with gzip.open(arg.file, 'rt') as fp:
+	for line in fp.readlines():
+		for match in re.finditer('\s(CDS)\s', line):
+			coordinate=re.search('\d+)\.\.(\d+)', line)
+			start=coor.group(1)
+			end=coor.group(2)
+			
+			print(sequence[beg-1:beg+2])
+			#if i in line:
+				#print(line, start)
